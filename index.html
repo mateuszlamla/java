@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <button onclick="kliknij()">Click me</button>
+    <p id="klik"></p>
+
+
+    <input type="text" id="focus" value="Zdarzenie focus i  blur">
+    <button type="getfocus" onclick="getFocus()">Get focus</button>
+    <button type="blur " onclick="blur()">Blur</button>
+    <br><br>
+
+    <select id="change_select" onchange="change_function()">
+        <option value="PIES">PIES</option>
+        <option value="KOT">KOT</option>
+        <option value="KOŃ">KOŃ</option>
+        <option value="KROWA">KROWA</option>
+      </select>
+    <p id="change_output"></p>
+    
+
+    <h4 style="width: 230px; border: 1px solid; background-color: bisque;" onmouseover="redText(this)" onmouseout="blueText(this)">Zdarzenie mouseover i mouseout</h4>
+
+
+    <script>
+    function kliknij() {
+      document.getElementById("klik").innerHTML = "Zdarzenie click";
+    }
+    function getFocus(x) {
+        document.getElementById("focus").focus();
+    }
+    function blur(x) {
+        document.getElementById("focus").blur();
+    }
+    function change_function() {
+        let x = document.getElementById("change_select").value;
+        document.getElementById("change_output").innerHTML = " Zdarzenie change. Wybrałeś: " + x;
+    }
+    function redText(a) {
+        a.style.color = "red";
+    }
+
+    function blueText(b) {
+        b.style.color = "blue";
+    }
+
+
+    </script>
+    
+</body>
+</html>
