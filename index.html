@@ -1,59 +1,289 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Zdarzenia JS</title>
 
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
 
-    <button onclick="kliknij()">Click me</button>
-    <p id="klik"></p>
-
-
-    <input type="text" id="focus" value="Zdarzenie focus i  blur">
-    <button type="getfocus" onclick="getFocus()">Get focus</button>
-    <button type="blur " onclick="blur()">Blur</button>
-    <br><br>
-
-    <select id="change_select" onchange="change_function()">
-        <option value="PIES">PIES</option>
-        <option value="KOT">KOT</option>
-        <option value="KOŃ">KOŃ</option>
-        <option value="KROWA">KROWA</option>
-      </select>
-    <p id="change_output"></p>
     
 
-    <h4 style="width: 230px; border: 1px solid; background-color: bisque;" onmouseover="redText(this)" onmouseout="blueText(this)">Zdarzenie mouseover i mouseout</h4>
+    <!-- Bootstrap core CSS -->
+<link href="bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    
 
 
+<main>
+
+  <section class="py-1 text-center container">
+    <div class="row py-lg-4">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Zdarzenia JS</h1>
+        
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie Click </h5>
+              <form class="row g-2">
+                <input type="button" class="btn btn-primary" id="kliknij" onclick="onClick()" value="Kliknij">
+                <p id="klik"></p>
+              </form>
+              <p class="card-text">Zdarzenie click uruchamia funkcję po kliknięciu elementu.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie Focus </h5>
+              <form class="row g-2">
+                <input class="form-control" type="text" id="focus" onfocus="onFocus(this)" >
+              </form>
+              <br>
+              <p class="card-text">Zdarzenie focus uruchamia funkcję po zaznaczeniu elementu.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie Blur </h5>
+              <form class="row g-2">
+                <input class="form-control" type="text" id="blur" placeholder="Wpisz tekst i odznacz element" onblur="onBlur()">
+              </form>
+              <br>
+              <p class="card-text">Zdarzenie blur uruchamia funkcję po odznaczeniu elementu.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie Change </h5>
+              <form class="row g-2">
+                <select class="form-select" id="change_select" onchange="change_function()">
+                  <option value="none">------</option>
+                  <option value="PIES">PIES</option>
+                  <option value="KOT">KOT</option>
+                  <option value="KOŃ">KOŃ</option>
+                  <option value="KROWA">KROWA</option>
+                </select>
+                <p id="change_output"></p>
+              </form>
+              <p class="card-text">Zdarzenie change występuje, gdy wartość elementu została zmieniona. </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie Mouseover i Mouseout </h5>
+              <form class="row g-2">
+                <input type="button" class="btn btn-primary" onmouseover="redText(this)" onmouseout="whiteText(this)" value="Najedź na mnie">
+              </form>
+              <br>
+              <p class="card-text">Zdarzenie mouseover występuje, gdy wskaźnik myszy zostanie przesunięty na element.</p>
+              <p class="card-text">Zdarzenie mouseout występuje, gdy wskaźnik myszy zostanie przesunięty poza element.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie KeyPress </h5>
+              <form class="row g-2">
+                <input class="form-control" type="text" placeholder="Napisz coś" onkeypress="onKeyPress()">
+                <p id="onKeyPressed_output"></p>
+              </form>
+              <p class="card-text">Zdarzenie keypress występuje, gdy użytkownik naciśnie klawisz na klawiaturze.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie MouseDown i MouseUp </h5>
+              <form class="row g-2">
+                <input type="button" class="btn btn-primary" id="mouseDownUp" onmousedown="mouseDown()" onmouseup="mouseUp()" value="Naciśnij i przytrzymaj a później puść">
+              </form>
+              <br>
+              <p class="card-text">Zdarzenie mousedown występuje, gdy użytkownik naciśnie przycisk myszy nad elementem.</p>
+              <p class="card-text">Zdarzenie mouseup występuje, gdy użytkownik puści przycisk myszy nad elementem.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie Reset </h5>
+              <form class="row g-2" onreset="onReset()">
+                <input class="form-control" type="text">
+                <input class="btn btn-primary" type="reset" value="Reset">
+                <p id="onReset_output"></p>
+              </form>
+              <p class="card-text">Zdarzenie reset występuje po zresetowaniu formularza.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie Submit </h5>
+              <form class="row g-2" onsubmit="onSubmit()">
+                <input class="form-control" type="text">
+                <input class="btn btn-primary" type="submit" value="Submit">
+              </form>
+              <br>
+              <p class="card-text">Zdarzenie submit występuje po przesłaniu formularza.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie Select </h5>
+              <form class="row g-2">
+                <input class="form-control" type="text" value="Zaznacz tekst" onselect="onSelect()">
+                <p id="onSelect_output"></p>
+              </form>
+              <p class="card-text">Zdarzenie select występuje po zaznaczeniu tekstu w elemencie.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"> Zdarzenie Mousemove </h5>
+              <div  style="width: 200px; height: 100px;" class="form-control" onmousemove="onMousemove(event)" onmouseout="clearCoor()"></div>
+              <p id="mouseMove_output"></p>
+              <p class="card-text">Zdarzenie mousemove występuje, gdy wskaźnik porusza się i znajduję się nad elementem.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    function kliknij() {
-      document.getElementById("klik").innerHTML = "Zdarzenie click";
-    }
-    function getFocus(x) {
-        document.getElementById("focus").focus();
-    }
-    function blur(x) {
-        document.getElementById("focus").blur();
-    }
-    function change_function() {
-        let x = document.getElementById("change_select").value;
-        document.getElementById("change_output").innerHTML = " Zdarzenie change. Wybrałeś: " + x;
-    }
-    function redText(a) {
-        a.style.color = "red";
-    }
 
-    function blueText(b) {
-        b.style.color = "blue";
-    }
+      /*document.getElementById("kliknij").addEventListener("click",function(kliknij){
+          document.getElementById("klik").innerHTML = "Zdarzenie click"
+      } );*/
+      
+      /*
+      let formularz = document.getElementById('focus');
+      formularz.addEventListener('focus', function(zielone){
+       zielone.target.style.background = 'lightgreen';
+      }, true);
+  
+      formularz.addEventListener('blur', function(biale){
+      biale.target.style.background = '';
+      }, true);
+      */
 
+      function onClick() {
+        document.getElementById("klik").innerHTML = "Kliknięto";
+      }
+  
+      function onFocus(x) {
+        x.style.background = "#0d6efd";
+      }
+      function onBlur() {
+        var x = document.getElementById("blur");
+        x.value = x.value.toUpperCase();
+      }
+      function change_function() {
+          let x = document.getElementById("change_select").value;
+          document.getElementById("change_output").innerHTML = "Wybrałeś: " + x;
+      }
+      function redText(a) {
+          a.style.color = "red";
+      }
+  
+      function whiteText(b) {
+          b.style.color = "white";
+      }
+     
+      function onKeyPress() {
+          document.getElementById("onKeyPressed_output").innerHTML = "Zdarzenie KeyPressed";
+      }
+      
+      function mouseDown() {
+          document.getElementById("mouseDownUp").style.background = "red";
+      }
+  
+      function mouseUp() {
+          document.getElementById("mouseDownUp").style.background = "#0d6efd";
+      }
+  
+      function onReset(){
+          document.getElementById("onReset_output").innerHTML = "Zdarzenie reset"
+      }
+      
+      function onSubmit(){
+          alert("Zdarzenie Submit");
+      }
+  
+      function onSelect(){
+          document.getElementById("onSelect_output").innerHTML = "Zdarzenie select"
+      }
+      
+      function onMousemove(e) {
+        var x = e.clientX;
+        var y = e.clientY;
+        var coor = "Współrzędne (" + x + "," + y + ")";
+        document.getElementById("mouseMove_output").innerHTML = coor;
+      }
 
-    </script>
-    
-</body>
+      function clearCoor() {
+        document.getElementById("mouseMove_output").innerHTML = "";
+      }
+      </script>
+
+      
+  </body>
 </html>
