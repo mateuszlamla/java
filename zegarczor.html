@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        text-align: center;
+        font-size: 150%;    
+        background-color: bisque;
+    }
+    .gora{
+        margin-top: 10%;
+    }
+    form{
+        margin-top: 5%;
+    }
+    input{
+        text-align: center;
+        width: 200px;
+        height: 25px;
+        background-color: bisque;
+        border: 1px solid black;
+        
+    }
+</style>
+
+
+<p class="gora">Dziś: </p>
+<p id="output_dzis_data"></p>
+<p id="output_dzis_godzina"></p><br>
+
+<form action="" name="date">
+    <input name="day" type="text" placeholder="Dzień"><br>
+    <input name="month" type="text" placeholder="Miesiąc"><br>
+    <input name="year" type="text" placeholder="Rok"><br>   
+</form>
+<p class="dol">Zostało: </p>
+<p id="output_zostalo"></p>
+<body onload="clock()">
+    <script>
+        
+    function clock(){
+        let months = ["Styczen", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+        let time = new Date();
+        let year = time.getFullYear();
+        let month = time.getMonth();
+        let day = time.getDate();
+        let hour = time.getHours();
+        let minute = time.getMinutes();
+        let second = time.getSeconds();
+
+        document.getElementById('output_dzis_data').innerHTML = zero(day) + " " + months[month] + " " + year;
+        document.getElementById('output_dzis_godzina').innerText = zero(hour) + ":" + zero(minute) + ":" + zero(second);
+
+
+        let daysto = parseInt(document.forms.date["day"].value);
+        let monthsto = parseInt(document.forms.date["month"].value);
+        let yearsto = parseInt(document.forms.date["year"].value);
+
+        
+        let timeTo = new Date(yearsto, monthsto -1, daysto);
+        console.log(document.forms.date["month"].value);
+        console.log(timeTo.getMonth());
+        let difference = timeTo.getTime() - time.getTime();
+        
+        if(difference > 0){
+            let sec = difference / 1000;
+            let min = sec / 60;
+            let hr = min / 60;
+            let dy = hr / 24;
+
+            let secLeft = Math.floor(sec % 60);
+            let minLeft = Math.floor(min % 60);
+            let hLeft = Math.floor(hr %24);
+            let dyLeft = Math.floor(dy);
+
+            document.getElementById('output_zostalo').innerHTML = dyLeft + " dni " + hLeft + " godzin " + minLeft + " minut " + secLeft + " sekund";
+        }else{
+            document.getElementById('output_zostalo').innerHTML = "Było";
+        }
+
+
+        setTimeout(clock, 1000);
+    }
+    
+    function zero(x){
+        if(x<10){
+            return '0' + x;
+        }else{
+            return x;
+        }
+    }        
+    </script>
+</body>
+</html>
