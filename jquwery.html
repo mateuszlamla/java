@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <style>
+        .pierwszy{
+            background-color: red;
+            font-size: 150%;
+        }
+        .klikniety{
+            background-color: aqua;
+            font-size: 50%;
+        }
+        .hover{
+            font-size: 200%;
+            transition: 1s ease; 
+        }
+
+        .basic{
+            font-size: 100%;
+            background-color: transparent;
+        }
+
+        div{
+            height: 100px;
+            width: 100px;
+            background-color: beige;
+            border: 1px solid bisque;
+        }
+    </style>
+    <ol>
+        <li>1</li>
+        <p hidden> ławeł z pabed, pabel z lawed</p>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ol>
+
+    <ul>
+        <li><a href="#">asdasd</a></li>
+    </ul>
+
+    <div></div>
+
+    <script>
+        $(function(){
+            $('ol li').first().addClass('pierwszy');
+            $('ol li').click(function(){
+              $(this).toggleClass('klikniety');
+            })
+
+            $('ol li').hover(function(){
+                $(this).toggleClass('hover');
+                
+            })
+
+            $('ol li').first().on('mouseover', function(){
+                $('ol p').show('slow');
+            })
+            $('ol li').first().on('mouseout', function(){
+                $('ol p').hide('slow')
+            })
+
+            $('ul li a').on('click', function(){
+                $(this).css('color', 'red');    
+            })
+
+            $('div').click(function(){
+                let div = $('div');
+                for(i=0; i<10; i++){
+                    div.animate({height: '+=100px', opacity: 0.7});
+                    div.animate({width: '+=100px', opacity: 1});  
+                    div.animate({height: '-=100px', opacity: 0.7});
+                    div.animate({width: '-=100px', opacity: 1});  
+                }
+                
+                //div.animate({height: '+=100px', opacity: 0.7});
+                //div.animate({width: '+=100px', opacity: 1});
+            })
+            
+
+            
+            
+
+
+
+        })
+    </script>
+
+   
+</body>
+</html>
